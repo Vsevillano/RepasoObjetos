@@ -14,6 +14,13 @@ public class Matriz {
 	 */
 	public Matriz(int filas, int columnas) {
 
+		if(filas<=0){ // Los dos if controlan que filas y columnas tengan valores válidos.
+			filas=2;
+		}
+		if(columnas<=0){
+			columnas=2;
+		}
+
 		matriz = new int[filas][columnas];
 	}
 
@@ -26,6 +33,16 @@ public class Matriz {
 	 * @param max
 	 */
 	public Matriz(int filas, int columnas, int min, int max) {
+		
+		if(filas<=0){ // Los dos if controlan que filas y columnas tengan valores válidos.
+			filas=2;
+		}
+		if(columnas<=0){
+			columnas=2;
+		}
+		if(max<min){ // Controla que el max nunca sea menor que el min
+			max=min+1;
+		}
 		matriz = new int[filas][columnas];
 
 		for (int i = 0; i < filas; i++) {
