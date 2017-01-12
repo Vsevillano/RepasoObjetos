@@ -1,5 +1,8 @@
 package matrices;
+
 /**
+ * Crea un objeto matriz que realice las operaciones basicas entre matrices... Sumar, restar, trasponer, multiplicar... y las muestre.
+ * 
  * @author Grupo 1
  * @version 1.0
  */
@@ -10,15 +13,18 @@ public class Matriz {
 	 * Constructor que inicializa a 0
 	 * 
 	 * @param filas
+	 *            Numero de filas de la matriz
 	 * @param columnas
+	 *            Numero de columnas de la matriz
 	 */
 	public Matriz(int filas, int columnas) {
 
-		if(filas<=0){ // Los dos if controlan que filas y columnas tengan valores válidos.
-			filas=2;
+		if (filas <= 0) { // Los dos if controlan que filas y columnas tengan
+							// valores válidos.
+			filas = 2;
 		}
-		if(columnas<=0){
-			columnas=2;
+		if (columnas <= 0) {
+			columnas = 2;
 		}
 
 		matriz = new int[filas][columnas];
@@ -28,20 +34,25 @@ public class Matriz {
 	 * Constructor que inicializa aleatoriamente entre un max y un min
 	 * 
 	 * @param filas
+	 *            de la matriz
 	 * @param columnas
+	 *            de la matriz
 	 * @param min
+	 *            aleatorio a generar
 	 * @param max
+	 *            aleatorio a generar
 	 */
 	public Matriz(int filas, int columnas, int min, int max) {
-		
-		if(filas<=0){ // Los dos if controlan que filas y columnas tengan valores válidos.
-			filas=2;
+
+		if (filas <= 0) { // Los dos if controlan que filas y columnas tengan
+							// valores válidos.
+			filas = 2;
 		}
-		if(columnas<=0){
-			columnas=2;
+		if (columnas <= 0) {
+			columnas = 2;
 		}
-		if(max<min){ // Controla que el max nunca sea menor que el min
-			max=min+1;
+		if (max < min) { // Controla que el max nunca sea menor que el min
+			max = min + 1;
 		}
 		matriz = new int[filas][columnas];
 
@@ -56,7 +67,8 @@ public class Matriz {
 	 * Suma dos matrices
 	 * 
 	 * @param s2
-	 * @return
+	 *            Matriz sumando
+	 * @return Una martriz con el resultado de la suma
 	 */
 	public Matriz sumar(Matriz s2) {
 
@@ -82,7 +94,8 @@ public class Matriz {
 	 * Resta dos matrices
 	 * 
 	 * @param sustraendo
-	 * @return
+	 *            Matriz sustraendo
+	 * @return Una matriz con el resultado de la operacion
 	 */
 	public Matriz restar(Matriz sustraendo) {
 		if (!mismasDimensiones(sustraendo)) {
@@ -119,18 +132,27 @@ public class Matriz {
 	 * Multiplica dos matrices
 	 * 
 	 * @param p2
-	 * @return
+	 *            Matriz producto
+	 * @return Una matriz con el producto de matriz y p2
 	 */
 	public Matriz multiplicar(Matriz p2) {
-
-		return null;
+		Matriz resultado = new Matriz(matriz.length, p2.matriz[0].length);
+		for (int i = 0; i < matriz.length; i++) {
+			for (int j = 0; j < p2.matriz[0].length; j++) {
+				for (int k = 0; k < matriz[0].length; k++) {
+					resultado.matriz[i][j] += matriz[i][k] * p2.matriz[k][j];
+				}
+			}
+		}
+		return resultado;
 	}
 
 	/**
 	 * Comprueba si la dimension de dos matrices es la misma o no
 	 * 
 	 * @param m
-	 * @return
+	 *            Matriz a comparar
+	 * @return True si es la misma dimension y false en caso contrario
 	 */
 	public boolean mismasDimensiones(Matriz m) {
 		if (m.matriz.length == matriz.length && m.matriz[0].length == matriz[0].length) {
@@ -144,7 +166,7 @@ public class Matriz {
 	/**
 	 * Devuelve el numero de filas de una matriz
 	 * 
-	 * @return
+	 * @return Entero con el numero de filas
 	 */
 	public int filas() {
 		return matriz.length; // Longitud del vector
@@ -153,7 +175,7 @@ public class Matriz {
 	/**
 	 * Devuelve el numero de columnas de una matriz
 	 * 
-	 * @return
+	 * @return entero con el numero de columnas
 	 */
 	public int columnas() {
 		return matriz[0].length; // Longitud de los elementos de la primera fila
